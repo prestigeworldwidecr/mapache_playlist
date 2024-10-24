@@ -1,0 +1,98 @@
+
+'''
+
+********
+BONEYARD
+********
+
+# print(src_folder, dst_folder)
+# print(location, keyword)
+
+>>
+
+src_folder = r"D:\music"				# D:\music
+dst_folder = r"C:\Users\_\Desktop\\"	# C:\Users\_\Desktop
+
+# Search files with .txt extension in source directory
+pattern = "\*.mp3"
+files = glob.glob(src_folder + pattern)
+
+print(len(files))
+
+# move the files with txt extension
+for file in files :
+# {
+    # extract file name form file path
+    file_name = os.path.basename(file)
+    # shutil.move(file, dst_folder + file_name)
+    # print('Moved:', file)
+    print(file, dst_folder + file_name)
+# }    
+
+# move the files with txt extension
+for file in files:
+    # extract file name form file path
+    file_name = os.path.basename(file)
+    shutil.move(file, dst_folder + file_name)
+    print('Moved:', file)
+
+>>
+
+https://pynative.com/python-move-files/
+
+import glob
+import os
+import shutil
+
+src_folder = r"E:\pynative\report"
+dst_folder = r"E:\pynative\account\\"
+
+# Search files with .txt extension in source directory
+pattern = "\*.txt"
+files = glob.glob(src_folder + pattern)
+
+# move the files with txt extension
+for file in files:
+    # extract file name form file path
+    file_name = os.path.basename(file)
+    shutil.move(file, dst_folder + file_name)
+    print('Moved:', file)
+
+https://medium.com/code-kings/python-windows-how-to-recursively-search-a-windows-directory-for-files-by-keyword-string-8187b0b6931d
+
+# Example Usage
+# python searchForFile.py <DIRECTORY_LOCATION HERE> "SEARCH_TERM_HERE"
+
+https://medium.com/code-kings/python-windows-how-to-recursively-search-a-windows-directory-for-files-by-keyword-string-8187b0b6931d
+
+import os
+import sys
+print("Starting Search...")
+location = os.walk(sys.argv[1])
+keyword = sys.argv[2].lower()
+
+def searchFiles(keyword):
+	found = []
+	for path,dirs,files in location:
+		totalFiles = len(files)
+		count = 1
+		for file in files:
+			file= file.lower();
+			print(str(count) +" of "+ str(totalFiles) + " - " + file,end="\r")
+
+			if file.find(keyword) > -1:
+				found.append(file) 
+			count +=1
+	os.system('cls')	
+	return found
+items =  searchFiles(keyword)
+title=  "Found " + str(len(items)) + " items"
+print(title)
+print("-"*len(title))
+for item in items:
+	print(item)
+  
+# Example Usage
+# python searchForFile.py DIRECTORY_LOCATION HERE "SEARCH_TERM_HERE"
+
+'''
